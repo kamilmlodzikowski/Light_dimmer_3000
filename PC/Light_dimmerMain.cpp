@@ -228,6 +228,7 @@ void Light_dimmerFrame::OnMenuItemConnection(wxCommandEvent& event)
     if(dlg==wxID_OK)
     {
         RS232_CloseComport(cport_nr);
+        Button_connect->SetLabel("Connect");
         Button_connect->Show();
         cport_nr=wxAtoi(tmp_dlg.port->GetValue());
         bdrate=wxAtoi(tmp_dlg.baud->GetValue());
@@ -249,22 +250,27 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
     }
     else
     {
-        Button_connect->Hide();
-            if(!RS232_SendByte(cport_nr, 0))
-    {
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000000);
         #endif
-            slider->SetValue(0);
-            vallig->SetLabel("0");
-    }
-    else
-    {
-        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
-        RS232_CloseComport(cport_nr);
-        Button_connect->Show();
-    }
+        Button_connect->Hide();
+        if(!RS232_SendByte(cport_nr, 0))
+        {
+            #ifdef _WIN32
+                Sleep(100);
+            #else
+                usleep(10000);
+            #endif
+                slider->SetValue(0);
+                vallig->SetLabel("0");
+        }
+        else
+        {
+            Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+            RS232_CloseComport(cport_nr);
+            Button_connect->Show();
+        }
     }
 }

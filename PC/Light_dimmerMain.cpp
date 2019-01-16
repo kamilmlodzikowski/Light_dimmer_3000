@@ -125,6 +125,7 @@ Light_dimmerFrame::~Light_dimmerFrame()
 
 void Light_dimmerFrame::OnQuit(wxCommandEvent& event)
 {
+    RS232_CloseComport(cport_nr);
     Close();
 }
 
@@ -136,40 +137,64 @@ void Light_dimmerFrame::OnAbout(wxCommandEvent& event)
 
 void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
 {
-    RS232_SendByte(cport_nr, 100);
-#ifdef _WIN32
-    Sleep(100);
-#else
-    usleep(10000);
-#endif
-    slider->SetValue(100);
-    vallig->SetLabel("100");
+    if(!RS232_SendByte(cport_nr, 100))
+    {
+        #ifdef _WIN32
+            Sleep(100);
+        #else
+            usleep(10000);
+        #endif
+            slider->SetValue(100);
+            vallig->SetLabel("100");
+    }
+    else
+    {
+        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        RS232_CloseComport(cport_nr);
+        Button_connect->Show();
+    }
 }
 
 void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
 {
-    RS232_SendByte(cport_nr, 0);
-#ifdef _WIN32
-    Sleep(100);
-#else
-    usleep(10000);
-#endif
-    slider->SetValue(0);
-    vallig->SetLabel("0");
+    if(!RS232_SendByte(cport_nr, 0))
+    {
+        #ifdef _WIN32
+            Sleep(100);
+        #else
+            usleep(10000);
+        #endif
+            slider->SetValue(0);
+            vallig->SetLabel("0");
+    }
+    else
+    {
+        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        RS232_CloseComport(cport_nr);
+        Button_connect->Show();
+    }
 }
 
 void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
 {
     int tmp=slider->GetValue();
-    RS232_SendByte(cport_nr, tmp);
-#ifdef _WIN32
-    Sleep(100);
-#else
-    usleep(10000);
-#endif
-    wxString lalaa;
-    lalaa<<tmp;
-    vallig->SetLabel(lalaa);
+    if(!RS232_SendByte(cport_nr, tmp))
+    {
+        #ifdef _WIN32
+            Sleep(100);
+        #else
+            usleep(10000);
+        #endif
+            wxString lalaa;
+            lalaa<<tmp;
+            vallig->SetLabel(lalaa);
+    }
+    else
+    {
+        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        RS232_CloseComport(cport_nr);
+        Button_connect->Show();
+    }
 }
 
 //void Light_dimmerFrame::OnButton3Click(wxCommandEvent& event)
@@ -219,8 +244,7 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
         #else
             usleep(10000);
         #endif
-        printf("Can not open comport\n");
-        Button_connect->SetLabel("ERROR");
+        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
         RS232_CloseComport(cport_nr);
     }
     else

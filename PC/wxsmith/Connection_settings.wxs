@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="Connection_settings">
+		<size>400,217</size>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="baud" member="yes">
+			<value>9600</value>
+			<pos>112,32</pos>
+			<handler function="OnTextCtrl1Text" entry="EVT_TEXT" />
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+			<label>Baud Rate</label>
+			<pos>32,40</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+			<label>Port</label>
+			<pos>56,104</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="port" member="yes">
+			<value>24</value>
+			<pos>112,96</pos>
+		</object>
+		<object class="wxButton" name="wxID_OK" variable="Button1" member="yes">
+			<label>OK</label>
+			<pos>160,160</pos>
+		</object>
+	</object>
+</wxsmith>

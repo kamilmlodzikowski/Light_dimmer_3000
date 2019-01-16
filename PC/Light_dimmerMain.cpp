@@ -224,6 +224,12 @@ void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
 void Light_dimmerFrame::OnMenuItemConnection(wxCommandEvent& event)
 {
     Connection_settings tmp_dlg(this);
+    wxString tymczas;
+    tymczas<<bdrate;
+    tmp_dlg.baud->SetValue(tymczas);
+    tymczas="";
+    tymczas<<cport_nr;
+    tmp_dlg.port->SetValue(tymczas);
     int dlg=tmp_dlg.ShowModal();
     if(dlg==wxID_OK)
     {
@@ -253,7 +259,7 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(1000000);
+            usleep(10000);
         #endif
         Button_connect->Hide();
         if(!RS232_SendByte(cport_nr, 0))

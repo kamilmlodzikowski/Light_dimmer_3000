@@ -2,9 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="rs232.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Light_dimmerMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8395" topLine="284" />
+			<Cursor1 position="8136" topLine="121" />
 		</Cursor>
 	</File>
 	<File name="Light_dimmerApp.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,19 +12,9 @@
 			<Cursor1 position="13" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Connection_settings.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Connection_settings.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1666" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="Light_dimmerApp.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="451" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="rs232.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="49" />
+			<Cursor1 position="30" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Light_dimmerMain.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,14 +22,24 @@
 			<Cursor1 position="763" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Light_dimmerMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Light_dimmerApp.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8771" topLine="232" />
+			<Cursor1 position="451" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Connection_settings.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rs232.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="30" topLine="0" />
+			<Cursor1 position="8395" topLine="284" />
+		</Cursor>
+	</File>
+	<File name="Connection_settings.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1666" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="rs232.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="49" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

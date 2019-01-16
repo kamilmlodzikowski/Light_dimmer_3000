@@ -12,7 +12,7 @@
 #include "rs232.h"
 #include "Connection_settings.h"
 
-  int cport_nr=25,        /* /dev/ttyS0 (COM1 on windows) */
+  int cport_nr=24,        /* /dev/ttyS0 (COM1 on windows) */
       bdrate=9600;       /* 9600 baud */
 
 //(*InternalHeaders(Light_dimmerFrame)
@@ -137,7 +137,11 @@ void Light_dimmerFrame::OnAbout(wxCommandEvent& event)
 void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
 {
     RS232_SendByte(cport_nr, 100);
-    usleep(1000);
+#ifdef _WIN32
+    Sleep(100);
+#else
+    usleep(10000);
+#endif
     slider->SetValue(100);
     vallig->SetLabel("100");
 }
@@ -145,7 +149,11 @@ void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
 void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
 {
     RS232_SendByte(cport_nr, 0);
-    usleep(1000);
+#ifdef _WIN32
+    Sleep(100);
+#else
+    usleep(10000);
+#endif
     slider->SetValue(0);
     vallig->SetLabel("0");
 }
@@ -154,7 +162,11 @@ void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
 {
     int tmp=slider->GetValue();
     RS232_SendByte(cport_nr, tmp);
-    usleep(1000);
+#ifdef _WIN32
+    Sleep(100);
+#else
+    usleep(10000);
+#endif
     wxString lalaa;
     lalaa<<tmp;
     vallig->SetLabel(lalaa);
@@ -202,6 +214,11 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
     char mode[]={'8','N','1',0};
     if(RS232_OpenComport(cport_nr, bdrate, mode))
     {
+        #ifdef _WIN32
+            Sleep(100);
+        #else
+            usleep(10000);
+        #endif
         printf("Can not open comport\n");
         Button_connect->SetLabel("ERROR");
         RS232_CloseComport(cport_nr);

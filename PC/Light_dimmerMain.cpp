@@ -250,5 +250,21 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
     else
     {
         Button_connect->Hide();
+            if(!RS232_SendByte(cport_nr, 0))
+    {
+        #ifdef _WIN32
+            Sleep(100);
+        #else
+            usleep(10000);
+        #endif
+            slider->SetValue(0);
+            vallig->SetLabel("0");
+    }
+    else
+    {
+        Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        RS232_CloseComport(cport_nr);
+        Button_connect->Show();
+    }
     }
 }

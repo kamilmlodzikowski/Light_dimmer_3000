@@ -6,6 +6,7 @@
 #include <wx/button.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/choice.h>
 //*)
 
 class Connection_settings: public wxDialog
@@ -16,10 +17,10 @@ class Connection_settings: public wxDialog
 		virtual ~Connection_settings();
 
 		//(*Declarations(Connection_settings)
-		wxTextCtrl* port;
 		wxButton* Button1;
 		wxTextCtrl* baud;
 		wxStaticText* StaticText1;
+		wxChoice* ChoicePort;
 		wxStaticText* StaticText2;
 		//*)
 
@@ -29,7 +30,7 @@ class Connection_settings: public wxDialog
 		static const long ID_TEXTCTRL1;
 		static const long ID_STATICTEXT1;
 		static const long ID_STATICTEXT2;
-		static const long ID_TEXTCTRL2;
+		static const long ID_CHOICE1;
 		//*)
 
 	private:

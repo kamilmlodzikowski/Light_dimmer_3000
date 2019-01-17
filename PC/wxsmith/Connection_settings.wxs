@@ -15,13 +15,54 @@
 			<label>Port</label>
 			<pos>56,104</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="port" member="yes">
-			<value>24</value>
-			<pos>112,96</pos>
-		</object>
 		<object class="wxButton" name="wxID_OK" variable="Button1" member="yes">
 			<label>OK</label>
 			<pos>160,160</pos>
+		</object>
+		<object class="wxChoice" name="ID_CHOICE1" variable="ChoicePort" member="yes">
+			<content>
+				<item>/dev/ttyS0</item>
+				<item>/dev/ttyS1</item>
+				<item>/dev/ttyS2</item>
+				<item>/dev/ttyS3</item>
+				<item>/dev/ttyS4</item>
+				<item>/dev/ttyS5</item>
+				<item>/dev/ttyS6</item>
+				<item>/dev/ttyS7</item>
+				<item>/dev/ttyS8</item>
+				<item>/dev/ttyS9</item>
+				<item>/dev/ttyS10</item>
+				<item>/dev/ttyS11</item>
+				<item>/dev/ttyS12</item>
+				<item>/dev/ttyS13</item>
+				<item>/dev/ttyS14</item>
+				<item>/dev/ttyS15</item>
+				<item>/dev/ttyUSB0</item>
+				<item>/dev/ttyUSB1</item>
+				<item>/dev/ttyUSB2</item>
+				<item>/dev/ttyUSB3</item>
+				<item>/dev/ttyUSB4</item>
+				<item>/dev/ttyUSB5</item>
+				<item>/dev/ttyAMA0</item>
+				<item>/dev/ttyAMA1</item>
+				<item>/dev/ttyACM0</item>
+				<item>/dev/ttyACM1</item>
+				<item>/dev/rfcomm0</item>
+				<item>/dev/rfcomm1</item>
+				<item>/dev/ircomm0</item>
+				<item>/dev/ircomm1</item>
+				<item>/dev/cuau0</item>
+				<item>/dev/cuau1</item>
+				<item>/dev/cuau2</item>
+				<item>/dev/cuau3</item>
+				<item>/dev/cuaU0</item>
+				<item>/dev/cuaU1</item>
+				<item>/dev/cuaU2</item>
+				<item>/dev/cuaU3</item>
+			</content>
+			<selection>24</selection>
+			<pos>112,96</pos>
+			<size>168,31</size>
 		</object>
 	</object>
 </wxsmith>

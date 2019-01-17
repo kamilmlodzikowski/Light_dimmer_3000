@@ -226,17 +226,20 @@ void Light_dimmerFrame::OnMenuItemConnection(wxCommandEvent& event)
     wxString tymczas;
     tymczas<<bdrate;
     tmp_dlg.baud->SetValue(tymczas);
-    tymczas="";
-    tymczas<<cport_nr;
-    tmp_dlg.port->SetValue(tymczas);
+    tmp_dlg.ChoicePort->SetSelection(cport_nr);
     int dlg=tmp_dlg.ShowModal();
     if(dlg==wxID_OK)
     {
         RS232_CloseComport(cport_nr);
         Button_connect->SetLabel("Connect");
         Button_connect->Show();
-        cport_nr=wxAtoi(tmp_dlg.port->GetValue());
-        bdrate=wxAtoi(tmp_dlg.baud->GetValue());
+        //cport_nr=wxAtoi(tmp_dlg.port->GetValue());
+        cport_nr=tmp_dlg.ChoicePort->GetSelection();
+        int bdr_tmp=wxAtoi(tmp_dlg.baud->GetValue());
+        if(bdr_tmp>0)
+        {
+            bdrate=bdr_tmp;
+        }
     }
 }
 
@@ -255,12 +258,12 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
     }
     else
     {
+        Button_connect->Hide();
         #ifdef _WIN32
             Sleep(100);
         #else
             usleep(10000);
         #endif
-        Button_connect->Hide();
         if(!RS232_SendByte(cport_nr, 0))
         {
             #ifdef _WIN32

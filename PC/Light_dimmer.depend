@@ -1127,16 +1127,17 @@
 
 1522244266 /usr/include/wx-3.0/wx/gtk/textctrl.h
 
-1547653231 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.cpp
+1547761343 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.cpp
 	"Connection_settings.h"
 	<wx/string.h>
 	<wx/intl.h>
 
-1547653231 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.h
+1547761337 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.h
 	<wx/dialog.h>
 	<wx/button.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
+	<wx/choice.h>
 
 1547647403 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerApp.cpp
 	"Light_dimmerApp.h"
@@ -1174,7 +1175,7 @@
 	<errno.h>
 	<windows.h>
 
-1547662122 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
+1547715388 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
 	"Light_dimmerMain.h"
 	<wx/msgdlg.h>
 	"rs232.h"
@@ -1182,4 +1183,26 @@
 	<wx/string.h>
 	<wx/intl.h>
 	<wx/font.h>
+
+1522244266 /usr/include/wx-3.0/wx/choice.h
+	"wx/defs.h"
+	"wx/ctrlsub.h"
+	"wx/univ/choice.h"
+	"wx/msw/wince/choicece.h"
+	"wx/msw/choice.h"
+	"wx/motif/choice.h"
+	"wx/gtk/choice.h"
+	"wx/gtk1/choice.h"
+	"wx/osx/choice.h"
+	"wx/cocoa/choice.h"
+	"wx/os2/choice.h"
+
+1522244266 /usr/include/wx-3.0/wx/ctrlsub.h
+	"wx/defs.h"
+	"wx/arrstr.h"
+	"wx/control.h"
+	"wx/msw/ctrlsub.h"
+	"wx/motif/ctrlsub.h"
+
+1522244266 /usr/include/wx-3.0/wx/gtk/choice.h
 

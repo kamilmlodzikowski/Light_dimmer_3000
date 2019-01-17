@@ -24,7 +24,6 @@
 //helper functions
 enum wxbuildinfoformat {
     short_f, long_f };
-
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
     wxString wxbuild(wxVERSION_STRING);
@@ -74,12 +73,7 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     wxMenuBar* MenuBar1;
     wxMenu* Menu2;
 
-    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, (wxSYSTEM_MENU | \
-             wxMINIMIZE_BOX | \
-             wxMAXIMIZE_BOX | \
-             wxCLOSE_BOX | \
-             wxCAPTION | \
-             wxCLIP_CHILDREN), _T("id"));
+    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, (wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX | wxCAPTION | wxCLIP_CHILDREN), _T("id"));
     SetClientSize(wxSize(384,301));
     slider = new wxSlider(this, ID_SLIDER1, 0, 0, 100, wxPoint(24,224), wxSize(328,27), 0, wxDefaultValidator, _T("ID_SLIDER1"));
     Button1 = new wxButton(this, ID_BUTTON1, _("Light on"), wxPoint(40,120), wxSize(117,53), 0, wxDefaultValidator, _T("ID_BUTTON1"));

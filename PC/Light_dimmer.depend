@@ -1151,7 +1151,7 @@
 	<stdio.h>
 	"rs232.h"
 
-1547998635 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
+1548000767 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
 	<wx/button.h>
 	<wx/menu.h>
 	<wx/slider.h>
@@ -1177,7 +1177,7 @@
 	<errno.h>
 	<windows.h>
 
-1547998696 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
+1548000829 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
 	"Light_dimmerMain.h"
 	"Light_dimmerApp.h"
 	<wx/msgdlg.h>

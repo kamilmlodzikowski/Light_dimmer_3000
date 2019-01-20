@@ -312,14 +312,10 @@ void Light_dimmerFrame::OnTimer1Trigger(wxTimerEvent& event)
     if(is_connectd==true)
     {
         odczyt = RS232_PollComport(cport_nr, &buff, 1);
-        if(odczyt!=0)
+        if(odczyt!=stary_odczyt)
         {
-            if(odczyt==1)
-            {
-                odczyt=0;
-            }
             setSlider(odczyt);
+            stary_odczyt=odczyt;
         }
-
     }
 }

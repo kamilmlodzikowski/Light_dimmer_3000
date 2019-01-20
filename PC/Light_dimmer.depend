@@ -1139,26 +1139,28 @@
 	<wx/textctrl.h>
 	<wx/choice.h>
 
-1547647403 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerApp.cpp
+1547998419 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerApp.cpp
 	"Light_dimmerApp.h"
 	"Light_dimmerMain.h"
 	<wx/image.h>
 
-1547655377 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerApp.h
+1547998425 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerApp.h
 	<wx/app.h>
 	<unistd.h>
 	<stdlib.h>
 	<stdio.h>
+	"rs232.h"
 
-1547655430 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
+1547998635 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
 	<wx/button.h>
 	<wx/menu.h>
 	<wx/slider.h>
 	<wx/statusbr.h>
 	<wx/frame.h>
 	<wx/stattext.h>
+	<wx/timer.h>
 
-1547231766 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/rs232.c
+1547999498 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/rs232.c
 	"rs232.h"
 
 1547230141 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/rs232.h
@@ -1175,8 +1177,9 @@
 	<errno.h>
 	<windows.h>
 
-1547715388 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
+1547998696 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
 	"Light_dimmerMain.h"
+	"Light_dimmerApp.h"
 	<wx/msgdlg.h>
 	"rs232.h"
 	"Connection_settings.h"
@@ -1205,4 +1208,20 @@
 	"wx/motif/ctrlsub.h"
 
 1522244266 /usr/include/wx-3.0/wx/gtk/choice.h
+
+1522244266 /usr/include/wx-3.0/wx/timer.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/longlong.h"
+	"wx/event.h"
+	"wx/stopwatch.h"
+	"wx/utils.h"
+
+1522244266 /usr/include/wx-3.0/wx/stopwatch.h
+	"wx/defs.h"
+	"wx/longlong.h"
+	"wx/time.h"
+
+1522244266 /usr/include/wx-3.0/wx/time.h
+	"wx/longlong.h"
 

@@ -8,12 +8,14 @@
  **************************************************************/
 
 #include "Light_dimmerMain.h"
+#include "Light_dimmerApp.h"
 #include <wx/msgdlg.h>
 #include "rs232.h"
 #include "Connection_settings.h"
 
-  int cport_nr=24,        /* /dev/ttyS0 (COM1 on windows) */
-      bdrate=9600;       /* 9600 baud */
+
+
+
 
 //(*InternalHeaders(Light_dimmerFrame)
 #include <wx/string.h>
@@ -57,6 +59,7 @@ const long Light_dimmerFrame::idMenuQuit = wxNewId();
 const long Light_dimmerFrame::idConnection = wxNewId();
 const long Light_dimmerFrame::idMenuAbout = wxNewId();
 const long Light_dimmerFrame::ID_STATUSBAR1 = wxNewId();
+const long Light_dimmerFrame::ID_TIMER1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(Light_dimmerFrame,wxFrame)
@@ -73,7 +76,7 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     wxMenuBar* MenuBar1;
     wxMenu* Menu2;
 
-    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, (wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX | wxCAPTION | wxCLIP_CHILDREN), _T("id"));
+    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     SetClientSize(wxSize(384,301));
     slider = new wxSlider(this, ID_SLIDER1, 0, 0, 100, wxPoint(24,224), wxSize(328,27), 0, wxDefaultValidator, _T("ID_SLIDER1"));
     Button1 = new wxButton(this, ID_BUTTON1, _("Light on"), wxPoint(40,120), wxSize(117,53), 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -101,6 +104,8 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
+    Timer1.SetOwner(this, ID_TIMER1);
+    Timer1.Start(100, false);
 
     Connect(ID_SLIDER1,wxEVT_SCROLL_TOP|wxEVT_SCROLL_BOTTOM|wxEVT_SCROLL_LINEUP|wxEVT_SCROLL_LINEDOWN|wxEVT_SCROLL_PAGEUP|wxEVT_SCROLL_PAGEDOWN|wxEVT_SCROLL_THUMBTRACK|wxEVT_SCROLL_THUMBRELEASE|wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&Light_dimmerFrame::OnsliderCmdScroll);
     Connect(ID_SLIDER1,wxEVT_SCROLL_TOP,(wxObjectEventFunction)&Light_dimmerFrame::OnsliderCmdScroll);
@@ -113,6 +118,7 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnQuit);
     Connect(idConnection,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnMenuItemConnection);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnAbout);
+    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&Light_dimmerFrame::OnTimer1Trigger);
     //*)
 }
 
@@ -125,6 +131,7 @@ Light_dimmerFrame::~Light_dimmerFrame()
 void Light_dimmerFrame::OnQuit(wxCommandEvent& event)
 {
     RS232_CloseComport(cport_nr);
+    is_connectd=false;
     Close();
 }
 
@@ -141,7 +148,7 @@ void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000);
         #endif
             slider->SetValue(100);
             vallig->SetLabel("100");
@@ -149,6 +156,7 @@ void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
     else
     {
         Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        is_connectd=false;
         RS232_CloseComport(cport_nr);
         Button_connect->Show();
     }
@@ -161,7 +169,7 @@ void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000);
         #endif
             slider->SetValue(0);
             vallig->SetLabel("0");
@@ -169,6 +177,7 @@ void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
     else
     {
         Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        is_connectd=false;
         RS232_CloseComport(cport_nr);
         Button_connect->Show();
     }
@@ -182,7 +191,7 @@ void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000);
         #endif
             wxString lalaa;
             lalaa<<tmp;
@@ -191,6 +200,7 @@ void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
     else
     {
         Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+        is_connectd=false;
         RS232_CloseComport(cport_nr);
         Button_connect->Show();
     }
@@ -231,6 +241,7 @@ void Light_dimmerFrame::OnMenuItemConnection(wxCommandEvent& event)
     if(dlg==wxID_OK)
     {
         RS232_CloseComport(cport_nr);
+        is_connectd=false;
         Button_connect->SetLabel("Connect");
         Button_connect->Show();
         //cport_nr=wxAtoi(tmp_dlg.port->GetValue());
@@ -251,10 +262,11 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000);
         #endif
         Button_connect->SetLabel("             ERROR\n\nTry connecting again");
         RS232_CloseComport(cport_nr);
+        is_connectd=false;
     }
     else
     {
@@ -262,23 +274,52 @@ void Light_dimmerFrame::OnButton_connectClick(wxCommandEvent& event)
         #ifdef _WIN32
             Sleep(100);
         #else
-            usleep(10000);
+            usleep(1000);
         #endif
         if(!RS232_SendByte(cport_nr, 0))
         {
             #ifdef _WIN32
                 Sleep(100);
             #else
-                usleep(10000);
+                usleep(1000);
             #endif
+                is_connectd=true;
                 slider->SetValue(0);
                 vallig->SetLabel("0");
         }
         else
         {
             Button_connect->SetLabel("             ERROR\n\nTry connecting again");
+            is_connectd=false;
             RS232_CloseComport(cport_nr);
             Button_connect->Show();
         }
+    }
+}
+
+void Light_dimmerFrame::setSlider(int wartosc)
+{
+        slider->SetValue(wartosc);
+        wxString tmp;
+        tmp<<wartosc;
+        vallig->SetLabel(tmp);
+}
+
+
+
+void Light_dimmerFrame::OnTimer1Trigger(wxTimerEvent& event)
+{
+    if(is_connectd==true)
+    {
+        odczyt = RS232_PollComport(cport_nr, &buff, 1);
+        if(odczyt!=0)
+        {
+            if(odczyt==1)
+            {
+                odczyt=0;
+            }
+            setSlider(odczyt);
+        }
+
     }
 }

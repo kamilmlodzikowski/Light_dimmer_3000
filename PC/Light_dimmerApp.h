@@ -14,11 +14,14 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "rs232.h"
+
 
 class Light_dimmerApp : public wxApp
 {
     public:
         virtual bool OnInit();
+//        virtual int OnRun();
 };
 
 #endif // LIGHT_DIMMERAPP_H

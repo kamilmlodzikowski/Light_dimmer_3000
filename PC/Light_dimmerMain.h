@@ -56,8 +56,8 @@ class Light_dimmerFrame: public wxFrame
         static const long ID_STATICTEXT1;
         static const long ID_STATICTEXT2;
         static const long ID_Connect;
-        static const long idMenuQuit;
         static const long idConnection;
+        static const long idMenuQuit;
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         static const long ID_TIMER1;

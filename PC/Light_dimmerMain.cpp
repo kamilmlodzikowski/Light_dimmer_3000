@@ -55,8 +55,8 @@ const long Light_dimmerFrame::ID_BUTTON2 = wxNewId();
 const long Light_dimmerFrame::ID_STATICTEXT1 = wxNewId();
 const long Light_dimmerFrame::ID_STATICTEXT2 = wxNewId();
 const long Light_dimmerFrame::ID_Connect = wxNewId();
-const long Light_dimmerFrame::idMenuQuit = wxNewId();
 const long Light_dimmerFrame::idConnection = wxNewId();
+const long Light_dimmerFrame::idMenuQuit = wxNewId();
 const long Light_dimmerFrame::idMenuAbout = wxNewId();
 const long Light_dimmerFrame::ID_STATUSBAR1 = wxNewId();
 const long Light_dimmerFrame::ID_TIMER1 = wxNewId();
@@ -88,10 +88,10 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     Button_connect = new wxButton(this, ID_Connect, _("Connect"), wxPoint(-32,-24), wxSize(448,344), 0, wxDefaultValidator, _T("ID_Connect"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
+    MenuItem3 = new wxMenuItem(Menu1, idConnection, _("Connection Settings\tAlt-C"), wxEmptyString, wxITEM_NORMAL);
+    Menu1->Append(MenuItem3);
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
-    MenuItem3 = new wxMenuItem(Menu1, idConnection, _("Connection Settings"), wxEmptyString, wxITEM_NORMAL);
-    Menu1->Append(MenuItem3);
     MenuBar1->Append(Menu1, _("&File"));
     Menu2 = new wxMenu();
     MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
@@ -115,8 +115,8 @@ Light_dimmerFrame::Light_dimmerFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Light_dimmerFrame::LightOn_click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Light_dimmerFrame::LightOff_click);
     Connect(ID_Connect,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Light_dimmerFrame::OnButton_connectClick);
-    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnQuit);
     Connect(idConnection,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnMenuItemConnection);
+    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Light_dimmerFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&Light_dimmerFrame::OnTimer1Trigger);
     //*)

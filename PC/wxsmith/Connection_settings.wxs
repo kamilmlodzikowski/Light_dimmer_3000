@@ -5,7 +5,8 @@
 		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="baud" member="yes">
 			<value>9600</value>
 			<pos>112,32</pos>
-			<handler function="OnTextCtrl1Text" entry="EVT_TEXT" />
+			<handler function="OnbaudTextEnter1" entry="EVT_TEXT" />
+			<handler function="OnbaudTextEnter1" entry="EVT_TEXT_ENTER" />
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
 			<label>Baud Rate</label>
@@ -17,7 +18,7 @@
 		</object>
 		<object class="wxButton" name="wxID_OK" variable="Button1" member="yes">
 			<label>OK</label>
-			<pos>160,160</pos>
+			<pos>96,160</pos>
 		</object>
 		<object class="wxChoice" name="ID_CHOICE1" variable="ChoicePort" member="yes">
 			<content>
@@ -63,6 +64,11 @@
 			<selection>24</selection>
 			<pos>112,96</pos>
 			<size>168,31</size>
+		</object>
+		<object class="wxButton" name="ID_BUTTON1" variable="reset_button" member="yes">
+			<label>Reset</label>
+			<pos>216,160</pos>
+			<handler function="Onreset_buttonClick" entry="EVT_BUTTON" />
 		</object>
 	</object>
 </wxsmith>

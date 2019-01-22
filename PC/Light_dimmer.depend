@@ -1127,7 +1127,7 @@
 
 1522244266 /usr/include/wx-3.0/wx/gtk/textctrl.h
 
-1548010481 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.cpp
+1548194337 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Connection_settings.cpp
 	"Connection_settings.h"
 	<wx/string.h>
 	<wx/intl.h>
@@ -1151,7 +1151,7 @@
 	<stdio.h>
 	"rs232.h"
 
-1548007223 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
+1548194293 /home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.h
 	<wx/button.h>
 	<wx/menu.h>
 	<wx/slider.h>
@@ -1177,7 +1177,7 @@
 	<errno.h>
 	<windows.h>
 
-1548007256 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
+1548194229 source:/home/gondzon/CodeBlocks/Light_dimmer_3000/PC/Light_dimmerMain.cpp
 	"Light_dimmerMain.h"
 	"Light_dimmerApp.h"
 	<wx/msgdlg.h>

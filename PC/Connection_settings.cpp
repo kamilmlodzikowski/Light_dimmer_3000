@@ -11,7 +11,6 @@ const long Connection_settings::ID_STATICTEXT1 = wxNewId();
 const long Connection_settings::ID_STATICTEXT2 = wxNewId();
 const long Connection_settings::ID_CHOICE1 = wxNewId();
 const long Connection_settings::ID_BUTTON1 = wxNewId();
-
 //*)
 
 BEGIN_EVENT_TABLE(Connection_settings,wxDialog)
@@ -71,8 +70,6 @@ Connection_settings::Connection_settings(wxWindow* parent,wxWindowID id)
 	ChoicePort->Append(_("/dev/cuaU3"));
 	reset_button = new wxButton(this, ID_BUTTON1, _("Reset"), wxPoint(216,160), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 
-
-	old_baud<<baud->GetValue();
 	Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&Connection_settings::OnbaudTextEnter1);
 	Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&Connection_settings::OnbaudTextEnter1);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Connection_settings::Onreset_buttonClick);
@@ -93,7 +90,7 @@ void Connection_settings::OnTextCtrl1Text(wxCommandEvent& event)
 void Connection_settings::Onreset_buttonClick(wxCommandEvent& event)
 {
     ChoicePort->SetSelection(24);
-    baud->SetValue("9600");
+    baud->SetValue("57600");
 }
 
 void Connection_settings::OnbaudTextEnter1(wxCommandEvent& event)

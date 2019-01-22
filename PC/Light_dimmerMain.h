@@ -31,8 +31,8 @@ class Light_dimmerFrame: public wxFrame
         unsigned char buff;
         int odczyt=0;
         int cport_nr=24,
-            bdrate=9600;
-        int stary_odczyt=0;
+            bdrate=57600;
+        unsigned char stary_odczyt=0;
 
     private:
 

@@ -143,7 +143,7 @@ void Light_dimmerFrame::OnAbout(wxCommandEvent& event)
 
 void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
 {
-    if(!RS232_SendByte(cport_nr, 100))
+    if(!RS232_SendByte(cport_nr, 99))
     {
         #ifdef _WIN32
             Sleep(100);
@@ -164,7 +164,7 @@ void Light_dimmerFrame::LightOn_click(wxCommandEvent& event)
 
 void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
 {
-    if(!RS232_SendByte(cport_nr, 0))
+    if(!RS232_SendByte(cport_nr, 10))
     {
         #ifdef _WIN32
             Sleep(100);
@@ -186,6 +186,7 @@ void Light_dimmerFrame::LightOff_click(wxCommandEvent& event)
 void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
 {
     int tmp=slider->GetValue();
+    tmp=tmp*89/100+10;
     if(!RS232_SendByte(cport_nr, tmp))
     {
         #ifdef _WIN32
@@ -194,6 +195,7 @@ void Light_dimmerFrame::OnsliderCmdScroll(wxScrollEvent& event)
             usleep(1000);
         #endif
             wxString lalaa;
+            tmp=(tmp-10)*100/89;
             lalaa<<tmp;
             vallig->SetLabel(lalaa);
     }
@@ -311,11 +313,16 @@ void Light_dimmerFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
     if(is_connectd==true)
     {
-        odczyt = RS232_PollComport(cport_nr, &buff, 1);
-        if(odczyt!=stary_odczyt)
+        odczyt = RS232_PollComport(cport_nr, &buff, sizeof(unsigned char));
+        if(buff!=stary_odczyt)
         {
-            setSlider(odczyt);
-            stary_odczyt=odczyt;
+            if((int)buff>100)
+            {
+
+                buff=100;
+            }
+            setSlider((int)buff);
+            stary_odczyt=buff;
         }
     }
 }
